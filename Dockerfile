@@ -38,8 +38,11 @@ ARG ALMOND_VERSION
 # Set to a single Scala version string or list of Scala versions separated by a space.
 # i.e SCALA_VERSIONS="2.12.9 2.13.0"
 ARG SCALA_VERSIONS
-USER $NB_UID
+
+USER root
 COPY scripts/install-kernels.sh .
 RUN ./install-kernels.sh && \
     rm install-kernels.sh && \
     rm -rf .ivy2
+
+USER $NB_UID
